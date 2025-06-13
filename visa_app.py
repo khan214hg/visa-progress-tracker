@@ -51,6 +51,15 @@ st.table(filtered_df)
 # Download button
 st.download_button("Download Data as CSV", df.to_csv(index=False), file_name='visa_data_download.csv')
 
+st.subheader("Search by Passport Number")
+search_passport = st.text_input("Enter Passport Number to Search")
+if search_passport:
+    result_df = df[df["Passport No"] == search_passport]
+    if not result_df.empty:
+        st.table(result_df)
+    else:
+        st.warning("No record found with this passport number.")
+
 # Delete record (by passport no)
 st.subheader("Delete Record")
 del_passport = st.text_input("Enter Passport Number to Delete")
